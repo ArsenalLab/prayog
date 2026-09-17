@@ -1,0 +1,8 @@
+{
+  "status": "error",
+  "errorCode": "SQL0102N | SQLSTATE 54002",
+  "errorMessage": "The string constant beginning with \"SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = 'CUST-10023' AND REGION = 'US-EAST' AND AAAAA...\" is too long or has too many parameters.",
+  "stackTrace": "at DB2Connection.executeQuery (lib/db2/connection.js:104:15)\nat CustomerService.getCustomerDetails (services/customer_service.js:6:28)\nat RequestHandler.handle (routes/customer.js:12:35)",
+  "failureContext": "QueryExecutor attempted to execute a parameterized SELECT query against DB2INST1.CUSTOMERS filtering by ID and REGION. At runtime the bound parameter values produced a string constant that exceeded DB2's maximum allowed length (SQLSTATE 54002), causing the query to fail. The original query template was: SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = ? AND REGION = ?",
+  "timestamp": "2026-03-30T10:00:01.234Z"
+}

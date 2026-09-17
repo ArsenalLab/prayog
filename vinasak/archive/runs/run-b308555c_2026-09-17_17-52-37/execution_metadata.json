@@ -1,0 +1,18 @@
+{
+  "runId": "run-b308555c",
+  "timestamp": "2026-09-17T17:52:37.239Z",
+  "startTime": "2026-09-17T17:52:37.244Z",
+  "status": "failed",
+  "stagesCompleted": [
+    "01_error_diagnostics",
+    "02_component_context",
+    "03_pr_blame"
+  ],
+  "totalDurationMs": 165904,
+  "error": {
+    "message": "Structured output tag <handoff_state> contains invalid JSON",
+    "stack": "StructuredOutputError: Structured output tag <handoff_state> contains invalid JSON\n    at Que (file:///Users/priyanshu/Dev/prayog/node_modules/@arsenallab/arsenal-light/dist/index.js:67:3839)\n    at QV (file:///Users/priyanshu/Dev/prayog/node_modules/@arsenallab/arsenal-light/dist/index.js:67:3598)\n    at cfe (file:///Users/priyanshu/Dev/prayog/node_modules/@arsenallab/arsenal-light/dist/index.js:69:3736)\n    at process.processTicksAndRejections (node:internal/process/task_queues:103:5)\n    at async executeMultiAgentPipeline (file:///Users/priyanshu/Dev/prayog/.arsenal/run.mjs:149:25)",
+    "stage": 4
+  },
+  "endTime": "2026-09-17T17:55:23.148Z"
+}

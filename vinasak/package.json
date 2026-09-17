@@ -1,0 +1,8 @@
+{
+  "name": "prayog",
+  "version": "0.0.0",
+  "private": true,
+  "devDependencies": {
+    "@arsenallab/arsenal-light": "github:ArsenalLab/arsenal-light"
+  }
+}
