@@ -1,0 +1,17 @@
+commit e4f5g6h789abcedf0123456789abcdef01234567
+Author: Dev John <john.doe@ibm.com>
+Date:   Mon Mar 29 14:20:00 2026 -0400
+
+    feat: Add regional parameter debug padding to verify DB2 handling of extreme query lengths
+
+diff --git a/services/customer_service.js b/services/customer_service.js
+index a1b2c3d..e4f5g6h 100644
+--- a/services/customer_service.js
++++ b/services/customer_service.js
+@@ -4,3 +4,3 @@ export class CustomerService {
+     async getCustomerDetails(customerId, region) {
+         // Retrieve detailed customer records from DB2 database
+         try {
+-            const query = `SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = '${customerId}' AND REGION = '${region}'`;
++            const query = `SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = '${customerId}' AND REGION = '${region}'` + " AND " + "A".repeat(10000); // SQL0102N too long string
+             return await db.executeQuery(query);

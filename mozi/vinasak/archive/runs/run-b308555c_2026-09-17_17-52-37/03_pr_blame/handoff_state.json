@@ -1,0 +1,27 @@
+{
+  "componentContext": {
+    "errorProfile": {
+      "status": "error",
+      "errorCode": "SQL0102N | SQLSTATE=54002",
+      "errorMessage": "[IBM][CLI Driver][DB2] SQL0102N The string constant beginning with \"SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = 'CUST-10023' AND REGION = 'US-EAST' AND AAAAA...\" is too long or has too many parameters. SQLSTATE=54002",
+      "stackTrace": "at DB2Connection.executeQuery (lib/db2/connection.js:104:15)\nat CustomerService.getCustomerDetails (services/customer_service.js:6:28)\nat RequestHandler.handle (routes/customer.js:12:35)",
+      "failureContext": "Query execution failed while fetching customer details from DB2INST1.CUSTOMERS using a parameterized SELECT with ID and REGION filters. The bound parameter values produced a string constant that exceeded DB2's maximum string constant length limit (SQL0102N / SQLSTATE 54002). Original query template: SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = ? AND REGION = ?",
+      "timestamp": "2026-03-30T10:00:01.234Z"
+    },
+    "failingComponent": "CustomerService.getCustomerDetails",
+    "failingFilePath": "services/customer_service.js",
+    "failingSnippet": "const query = `SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = '${customerId}' AND REGION = '${region}'` + \" AND \" + \"A\".repeat(10000); // SQL0102N too long string\nreturn await db.executeQuery(query);",
+    "architectureContext": "Service layer component responsible for retrieving customer records from DB2 database and executing queries against the DB2 connection client.",
+    "dependencies": [
+      "routes/customer.js"
+    ]
+  },
+  "regressionIntroduced": true,
+  "regressionFile": "services/customer_service.js",
+  "regressionCommit": "e4f5g6h789abcedf0123456789abcdef01234567",
+  "regressionLines": [
+    6
+  ],
+  "regressionBlameAuthor": "Dev John <john.doe@ibm.com>",
+  "regressionDiffSnippet": "+ const query = `SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = '${customerId}' AND REGION = '${region}'` + \" AND \" + \"A\".repeat(10000); // SQL0102N too long string"
+}

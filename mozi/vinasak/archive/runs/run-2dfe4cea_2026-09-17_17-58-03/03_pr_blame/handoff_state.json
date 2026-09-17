@@ -1,0 +1,27 @@
+{
+  "componentContext": {
+    "errorProfile": {
+      "status": "error",
+      "errorCode": "SQL0102N | SQLSTATE=54002",
+      "errorMessage": "[IBM][CLI Driver][DB2] SQL0102N The string constant beginning with \"SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = 'CUST-10023' AND REGION = 'US-EAST' AND AAAAA...\" is too long or has too many parameters. SQLSTATE=54002",
+      "stackTrace": "at DB2Connection.executeQuery (lib/db2/connection.js:104:15)\nat CustomerService.getCustomerDetails (services/customer_service.js:6:28)\nat RequestHandler.handle (routes/customer.js:12:35)",
+      "failureContext": "QueryExecutor attempted to execute a parameterized SELECT query against DB2INST1.CUSTOMERS filtering by ID and REGION. The resolved string constant exceeded DB2's maximum allowed length, triggering SQL0102N. Original query template: SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = ? AND REGION = ?",
+      "timestamp": "2026-03-30T10:00:01.234Z"
+    },
+    "failingComponent": "CustomerService.getCustomerDetails",
+    "failingFilePath": "services/customer_service.js",
+    "failingSnippet": "const query = `SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = '${customerId}' AND REGION = '${region}'` + \" AND \" + \"A\".repeat(10000); // SQL0102N too long string\nreturn await db.executeQuery(query);",
+    "architectureContext": "CustomerService is the service layer component responsible for all customer data access against DB2. It is invoked by the HTTP route handler (RequestHandler in routes/customer.js) and delegates raw SQL execution to the DB2Connection singleton exported from lib/db2/connection.js. The getCustomerDetails method constructs a SELECT query using direct string interpolation of caller-supplied customerId and region values, then appends an unconditional 10,000-character string literal ('A'.repeat(10000)), which causes the fully resolved SQL string to exceed DB2's maximum allowed string constant length (SQLSTATE=54002 / SQL0102N). DB2Connection.executeQuery acts as the low-level execution engine; it validates query length and throws the SQL0102N error when sql.length > 500.",
+    "dependencies": [
+      "routes/customer.js"
+    ]
+  },
+  "regressionIntroduced": true,
+  "regressionFile": "services/customer_service.js",
+  "regressionCommit": "e4f5g6h789abcedf0123456789abcdef01234567",
+  "regressionLines": [
+    6
+  ],
+  "regressionBlameAuthor": "Dev John <john.doe@ibm.com>",
+  "regressionDiffSnippet": "+            const query = `SELECT * FROM DB2INST1.CUSTOMERS WHERE ID = '${customerId}' AND REGION = '${region}'` + \" AND \" + \"A\".repeat(10000); // SQL0102N too long string"
+}
