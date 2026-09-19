@@ -1,0 +1,39 @@
+{
+  "version": "v2",
+  "runTimestamp": "2026-09-02T15-06-17-328Z",
+  "host": "KhushiTyagi463-bot01-zlinux.dev.fyre.ibm.com",
+  "repo": "/home/khushiid/DiskANN",
+  "branch": "diskann-zlinux-gcc15",
+  "fork": "git@github.ibm.com:Khushi-Tyagi463/DiskANN.git",
+  "totalDurationMs": 2420381,
+  "passed": 2,
+  "failed": 0,
+  "skipped": 0,
+  "overallStatus": "PASS",
+  "agents": [
+    {
+      "agent": "01-understand-and-plan",
+      "status": "pass",
+      "durationMs": 1168224
+    },
+    {
+      "agent": "02-implement-build-push",
+      "status": "pass",
+      "durationMs": 1252154
+    }
+  ],
+  "logs": {
+    "ndjson": "/Users/khushityagi/sandcastle/diskann_zlinux_v2/logs/run-2026-09-02T15-06-17-328Z.ndjson",
+    "text": "/Users/khushityagi/sandcastle/diskann_zlinux_v2/logs/run-2026-09-02T15-06-17-328Z.log",
+    "perAgent": [
+      {
+        "agent": "01-understand-and-plan",
+        "file": "/Users/khushityagi/sandcastle/diskann_zlinux_v2/logs/01-understand-and-plan-2026-09-02T15-06-17-328Z.log"
+      },
+      {
+        "agent": "02-implement-build-push",
+        "file": "/Users/khushityagi/sandcastle/diskann_zlinux_v2/logs/02-implement-build-push-2026-09-02T15-06-17-328Z.log"
+      }
+    ]
+  }
+}
